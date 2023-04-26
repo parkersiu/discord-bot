@@ -6,9 +6,9 @@ module.exports = {
 		.setName('joke')
 		.setDescription('Replies with a joke.'),
 	async execute(interaction) {
-		await interaction.deferReply();
+		await interaction.deferReply({ ephemeral: true });
 		axios.get('https://v2.jokeapi.dev/joke/Any?type=single')
-			.then(res => interaction.editReply(JSON.stringify(res.data.joke)))
+			.then(res => interaction.editReply(`${JSON.stringify(res.data.joke)}`))
 			.catch(err => console.error(err));
 	},
 };
